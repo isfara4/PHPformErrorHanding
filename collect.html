@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework Form</title>
+</head>
+<body>
+
+<h1>Contact Information</h1>
+
+<form name="form4" method="POST" action="collect.php";>
+
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+
+  <label for="message">Message:</label><br>
+  <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+  <label for="birthdate">Birthdate:</label><br>
+  <input type="date" id="birthdate" name="birthdate"><br><br>
+
+  <label for="time">Time:</label><br>
+  <input type="time" id="time" name="time"><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+  function validateForm() {
+
+    var name = document.getElementById("name");
+    var email = document.getElementById("email");
+    var message = document.getElementById("message");
+    var birthdate = document.getElementById("birthdate");
+    var time = document.getElementById("time");
+    
+    if (name.value === "") {
+      alert("Name must be filled out");
+      return false; 
+    }
+    
+    if (email.value === "" || !validateEmail(email.value)) {
+      alert("Invalid email address");
+      return false;  
+    }
+    
+    if (message.value === "") {
+      alert("Message must be filled out");
+      return false;  
+    }
+  
+
+  var birthdateValue = birthdate.value;
+  if (birthdateValue === "") {
+    alert("Birthdate must be filled out");
+    return false; 
+  }
+
+  var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+  if (!datePattern.test(birthdateValue)) {
+    alert("Invalid date format. Please use YYYY-MM-DD format.");
+    return false; 
+  }
+
+  var timeValue = time.value;
+  if (timeValue === "") {
+    alert("Time must be filled out");
+    return false;
+  }
+  var timePattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
+
+  if (!timePattern.test(timeValue)) {
+    alert("Invalid time format. Please use HH:MM format (24-hour clock).");
+    return false; 
+  }
+
+  return true;
+  }
+  function validateEmail(email) {
+
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  }
+
+  </script>
+
+
+</body>
+</html>
